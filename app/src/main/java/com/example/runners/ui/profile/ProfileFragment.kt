@@ -90,7 +90,7 @@ class ProfileFragment : Fragment() {
 
     private fun logoutApp() {
         auth.signOut()
-        findNavController().navigate(R.id.action_homeFragment_to_authentication)
+//        findNavController().navigate(R.id.action_homeFragment_to_authentication)
 
     }
 
