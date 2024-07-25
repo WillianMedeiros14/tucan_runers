@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "652660403530",
+    "project_id": "task-6fc33",
+    "storage_bucket": "task-6fc33.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:652660403530:android:a0d8cc1c3ec89544ff25b3",
+        "android_client_info": {
+          "package_name": "com.example.runners"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9xR0ydOPQXt2ILwK6RQOWqX8OPgJZlKE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
