@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.Toolbar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 
@@ -31,12 +33,14 @@ class NewsDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        (activity as? AppCompatActivity)?.supportActionBar?.show()
+
         getArgs()
         initClicks()
     }
 
     private fun getArgs() {
-        args.urlNews?.let { url ->
+        args.newsUrl.let { url ->
             binding.webview.apply {
                 setBackgroundColor(android.graphics.Color.WHITE)
                 webViewClient = object : WebViewClient() {
@@ -48,7 +52,9 @@ class NewsDetailsFragment : Fragment() {
                         binding.progressBar.visibility = View.GONE
                     }
                 }
-                loadUrl(url)
+                if (url != null) {
+                    loadUrl(url)
+                }
             }
         }
     }
@@ -64,6 +70,8 @@ class NewsDetailsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+
+        (activity as? AppCompatActivity)?.supportActionBar?.hide()
     }
 
 }

@@ -32,6 +32,7 @@ class NewsAdapter(
 
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
         val newsItem = newsList.getOrNull(position)
+//        if (newsItem != null) {
         if (newsItem != null) {
             holder.bind(newsItem)
             holder.itemView.setOnClickListener {

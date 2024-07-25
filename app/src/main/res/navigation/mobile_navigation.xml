@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/homeScreenFragmentMain">
+    <fragment
+        android:id="@+id/homeScreenFragmentMain"
+        android:name="com.example.runners.ui.home.HomeScreenFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home_screen" />
+
+    <fragment
+        android:id="@+id/newsHomeFragment"
+        android:name="com.example.runners.ui.news.NewsFragment"
+        android:label="Notícias"
+        tools:layout="@layout/fragment_news" >
+        <action
+            android:id="@+id/action_newsHomeFragment_to_newsDetailsScreenFragment"
+            app:destination="@id/newsDetailsScreenFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/profileHomeFragment"
+        android:name="com.example.runners.ui.profile.ProfileFragment"
+        android:label="Perfil"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/newsDetailsScreenFragment"
+        android:name="com.example.runners.ui.news.NewsDetailsFragment"
+        android:label="Fonte da notícia"
+        tools:layout="@layout/fragment_news_details" >
+        <argument
+            android:name="newsUrl"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+</navigation>

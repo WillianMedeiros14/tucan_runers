@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/splashFragment">
 
     <!-- Splash Fragment -->
     <fragment
@@ -12,61 +12,28 @@
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash">
         <action
-            android:id="@+id/action_splashFragment_to_homeFragment"
-            app:destination="@id/homeFragment"
-            app:popUpTo="@id/splashFragment"
-            app:popUpToInclusive="true"/>
-        <action
             android:id="@+id/action_splashFragment_to_authentication"
             app:destination="@id/authentication"
             app:popUpTo="@id/splashFragment"
             app:popUpToInclusive="true"/>
     </fragment>
 
-    <!-- Home Fragment -->
     <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.example.runners.ui.auth.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home">
-        <action
-            android:id="@+id/action_homeFragment_to_newsFragment"
-            app:destination="@id/newsFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_homeScreenFragment"
-            app:destination="@id/homeScreenFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_newsDetailsFragment"
-            app:destination="@id/newsDetailsFragment" />
-    </fragment>
-
-    <!-- Home Screen Fragment -->
-    <fragment
-        android:id="@+id/homeScreenFragment"
+        android:id="@+id/homeScreenFragmentMain"
         android:name="com.example.runners.ui.home.HomeScreenFragment"
-        android:label="Home Screen"
+        android:label="fragment_home_screen"
         tools:layout="@layout/fragment_home_screen" />
 
-    <!-- News Fragment -->
     <fragment
-        android:id="@+id/newsFragment"
+        android:id="@+id/newsHomeFragment"
         android:name="com.example.runners.ui.news.NewsFragment"
-        android:label="News"
+        android:label="fragment_news"
         tools:layout="@layout/fragment_news" >
         <action
-            android:id="@+id/action_newsFragment_to_newsDetailsFragment"
-            app:destination="@id/newsDetailsFragment" />
+            android:id="@+id/action_newsHomeFragment_to_newsDetailsScreenFragment"
+            app:destination="@id/newsDetailsScreenFragment" />
     </fragment>
 
-    <!-- Profile Fragment -->
-    <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.example.runners.ui.profile.ProfileFragment"
-        android:label="Profile"
-        tools:layout="@layout/fragment_profile" />
 
     <!-- Authentication Navigation -->
     <navigation
@@ -100,21 +67,6 @@
             android:label="fragment_recover_account"
             tools:layout="@layout/fragment_recover_account" />
 
-        <action
-            android:id="@+id/action_global_homeFragment"
-            app:destination="@id/homeFragment"
-            app:popUpTo="@id/loginFragment"
-            app:popUpToInclusive="true"/>
     </navigation>
-    <fragment
-        android:id="@+id/newsDetailsFragment"
-        android:name="com.example.runners.ui.news.NewsDetailsFragment"
-        android:label="fragment_news_details"
-        tools:layout="@layout/fragment_news_details" >
-        <argument
-            android:name="urlNews"
-            app:argType="string"
-            app:nullable="true" />
-    </fragment>
 
 </navigation>

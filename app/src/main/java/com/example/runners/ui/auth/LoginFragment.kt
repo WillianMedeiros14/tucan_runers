@@ -75,7 +75,7 @@ class LoginFragment : Fragment() {
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
                     showLoading(false)
-                    findNavController().navigate(R.id.action_global_homeFragment)
+                    findNavController().navigate(R.id.homeScreenFragmentMain)
                 } else {
                     Toast.makeText(
                         requireContext(),

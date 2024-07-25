@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,7 +21,6 @@ import com.example.runners.model.NewsResponseData
 import com.example.runners.model.Source
 import com.example.runners.ui.adapter.ItemSpacingDecoration
 import com.example.runners.ui.adapter.NewsAdapter
-import com.example.runners.ui.auth.HomeFragmentDirections
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -46,12 +46,14 @@ class NewsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        (activity as? AppCompatActivity)?.supportActionBar?.hide()
+
         recyclerView = binding.recyclerView
         progressBar = binding.progressBar
         loadingMessage = binding.loadingMessage
 
         newsAdapter = NewsAdapter { url ->
-            val action = HomeFragmentDirections.actionHomeFragmentToNewsDetailsFragment(url)
+            val action = NewsFragmentDirections.actionNewsHomeFragmentToNewsDetailsScreenFragment(url)
             findNavController().navigate(action)
         }
         recyclerView.layoutManager = LinearLayoutManager(context)
@@ -67,7 +69,7 @@ class NewsFragment : Fragment() {
     }
 
     private fun initClicks() {
-        binding.backButton.setOnClickListener { backButton() }
+//        binding.backButton.setOnClickListener { backButton() }
     }
 
     private fun fetchNews() {
