@@ -1,6 +1,8 @@
 package com.example.runners.ui.home
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -23,11 +25,14 @@ class HomeScreenFragment : Fragment() {
     ): View? {
         _binding = FragmentHomeScreenBinding.inflate(inflater, container, false)
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            (activity as AppCompatActivity).supportActionBar?.hide()
+        }, 50)
 
         initSlider()
     }
@@ -67,8 +72,6 @@ class HomeScreenFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-
-
     }
 
 }

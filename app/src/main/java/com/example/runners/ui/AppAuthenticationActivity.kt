@@ -50,4 +50,9 @@ class AppAuthenticationActivity : AppCompatActivity() {
         }
 
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.nav_host_fragment_activity_app)
+        return navController.navigateUp() || super.onSupportNavigateUp()
+    }
 }
