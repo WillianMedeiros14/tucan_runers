@@ -113,7 +113,7 @@ class RegisterFragment : Fragment() {
         val myRef = FirebaseHelper.getDatabase().child("users").child(FirebaseHelper.getIdUser() ?: "")
         myRef.setValue(user).addOnSuccessListener {
             showLoading(false)
-//            findNavController().navigate(R.id.)
+       findNavController().navigate(R.id.action_global_profileEditFragment)
         }.addOnFailureListener { e ->
             Toast.makeText(
                 requireContext(),
@@ -130,6 +130,5 @@ class RegisterFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
 
 }

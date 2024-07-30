@@ -1,5 +1,6 @@
 package com.example.runners.ui.auth
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.example.runners.R
 import com.example.runners.databinding.FragmentLoginBinding
+import com.example.runners.ui.MainActivity
 import com.example.runners.ui.adapter.FirebaseHelper
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -75,7 +77,7 @@ class LoginFragment : Fragment() {
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
                     showLoading(false)
-                    findNavController().navigate(R.id.homeScreenFragmentMain)
+                    navigateToAuthentication()
                 } else {
                     Toast.makeText(
                         requireContext(),
@@ -96,6 +98,13 @@ class LoginFragment : Fragment() {
             binding.progressBar.isVisible = false
         }
     }
+
+    private fun navigateToAuthentication() {
+        val intent = Intent(requireContext(), MainActivity::class.java)
+        startActivity(intent)
+        requireActivity().finish()
+    }
+
 
 
     override fun onDestroyView() {

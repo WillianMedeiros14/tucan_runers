@@ -1,5 +1,6 @@
 package com.example.runners.ui.profile
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,6 +15,8 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.example.runners.R
 import com.example.runners.databinding.FragmentProfileBinding
 import com.example.runners.model.ItemMenuButton
+import com.example.runners.ui.AppAuthenticationActivity
+import com.example.runners.ui.MainActivity
 
 import com.example.runners.ui.adapter.ItemAdapter
 import com.google.firebase.auth.FirebaseAuth
@@ -90,8 +93,13 @@ class ProfileFragment : Fragment() {
 
     private fun logoutApp() {
         auth.signOut()
-//        findNavController().navigate(R.id.action_homeFragment_to_authentication)
 
+        navigateToAuthentication()
+    }
+    private fun navigateToAuthentication() {
+        val intent = Intent(requireContext(), MainActivity::class.java)
+        startActivity(intent)
+        requireActivity().finish()
     }
 
     private fun backButton() {

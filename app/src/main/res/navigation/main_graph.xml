@@ -14,8 +14,12 @@
         <action
             android:id="@+id/action_splashFragment_to_authentication"
             app:destination="@id/authentication"
+            app:popUpTo="@id/splashFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_profileEditFragment"
+            app:destination="@id/profileEditFragment"
             app:popUpTo="@id/splashFragment"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -66,7 +70,17 @@
             android:name="com.example.runners.ui.auth.RecoverAccountFragment"
             android:label="fragment_recover_account"
             tools:layout="@layout/fragment_recover_account" />
+        <action
+            android:id="@+id/action_global_profileEditFragment"
+            app:destination="@id/profileEditFragment"
+            app:popUpTo="@id/authentication"
+            app:popUpToInclusive="true" />
 
     </navigation>
+    <fragment
+        android:id="@+id/profileEditFragment"
+        android:name="com.example.runners.ui.profile.ProfileEditFragment"
+        android:label="fragment_profile_edit"
+        tools:layout="@layout/fragment_profile_edit" />
 
 </navigation>
