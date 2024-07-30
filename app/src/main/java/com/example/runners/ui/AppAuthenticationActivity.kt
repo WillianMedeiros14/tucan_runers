@@ -47,6 +47,7 @@ class AppAuthenticationActivity : AppCompatActivity() {
                 R.id.newsDetailsScreenFragment -> navView.visibility = View.GONE
                 R.id.homeEventsFragment -> navView.visibility = View.GONE
                 R.id.eventsDetailsFragment -> navView.visibility = View.GONE
+                R.id.registrationEventFragment -> navView.visibility = View.GONE
                 else -> navView.visibility = View.VISIBLE
             }
         }

@@ -5,27 +5,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.WebView
-import android.webkit.WebViewClient
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.runners.R
 import com.example.runners.databinding.FragmentEventsDetailsBinding
-import com.example.runners.databinding.FragmentHomeEventsBinding
-import com.example.runners.helper.EventsAdapter
-import com.example.runners.helper.EventsDetailsAdapter
 import com.example.runners.model.Events
 import com.example.runners.ui.adapter.FirebaseHelper
-import com.example.runners.ui.news.NewsDetailsFragmentArgs
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
-
 
 class EventsDetailsFragment : Fragment() {
     private var _binding: FragmentEventsDetailsBinding? = null
@@ -49,44 +41,40 @@ class EventsDetailsFragment : Fragment() {
         (activity as? AppCompatActivity)?.supportActionBar?.title = eventTitle
 
         getArgs()
+        initClicks()
     }
 
     private fun getArgs() {
         args.id.let { id ->
-                if (id != null) {
-                    getEvents(id)
-                }
+            if (id != null) {
+                getEvents(id)
+            }
         }
     }
 
-    private fun getEvents(id:String) {
-        print(id)
+    private fun getEvents(id: String) {
         FirebaseHelper
             .getDatabase()
             .child("events")
             .child(id)
-            .addValueEventListener(object : ValueEventListener {
+            .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {
-
-                        for (snap in snapshot.children) {
-                            val event = snapshot.getValue(Events::class.java)
-                            if (event != null) {
-                                bindEventDetails(event)
-                                binding.loadingMessage.text = ""
-                            } else {
-                                binding.loadingMessage.text = "Erro ao converter o evento."
-                            }
+                        val event = snapshot.getValue(Events::class.java)
+                        if (event != null) {
+                            bindEventDetails(event)
+                            checkIfUserIsRegistered(id)
+                        } else {
+                            binding.loadingMessage.text = "Erro ao converter o evento."
                         }
-                    }else{
+                    } else {
                         binding.loadingMessage.text = "Nenhum evento encontrado."
                     }
-
                     binding.progressBar.isVisible = false
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    Toast.makeText(requireContext(), "Error ao buscar o evento", Toast.LENGTH_SHORT)
+                    Toast.makeText(requireContext(), "Erro ao buscar o evento", Toast.LENGTH_SHORT)
                         .show()
                 }
             })
@@ -119,6 +107,67 @@ class EventsDetailsFragment : Fragment() {
         }
     }
 
+    private fun initClicks() {
+        binding.btnRegistration.setOnClickListener {
+            args.id?.let { eventId ->
+                if (binding.btnRegistration.text == "Realizar inscrição") {
+                    val action = EventsDetailsFragmentDirections.actionEventsDetailsFragmentToRegistrationEventFragment(eventId)
+                    findNavController().navigate(action)
+                } else {
+                    cancelRegistration(eventId)
+                }
+            }
+        }
+
+        binding.btnCancel.setOnClickListener {
+            args.id?.let { eventId ->
+                cancelRegistration(eventId)
+            }
+        }
+    }
+
+    private fun checkIfUserIsRegistered(eventId: String) {
+        val userId = FirebaseHelper.getIdUser() ?: return
+
+        FirebaseHelper.getDatabase()
+            .child("events")
+            .child(eventId)
+            .child("registrationEvents")
+            .child(userId)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        binding.btnRegistration.text = "Cancelar inscrição"
+                        binding.btnCancel.isVisible = true
+                    } else {
+                        binding.btnRegistration.text = "Realizar inscrição"
+                        binding.btnCancel.isVisible = false
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(requireContext(), "Erro ao verificar inscrição.", Toast.LENGTH_SHORT).show()
+                }
+            })
+    }
+
+    private fun cancelRegistration(eventId: String) {
+        val userId = FirebaseHelper.getIdUser() ?: return
+
+        val registrationRef = FirebaseHelper.getDatabase()
+            .child("events")
+            .child(eventId)
+            .child("registrationEvents")
+            .child(userId)
+
+        registrationRef.removeValue().addOnSuccessListener {
+            Toast.makeText(requireContext(), "Inscrição cancelada com sucesso!", Toast.LENGTH_SHORT).show()
+            binding.btnRegistration.text = "Realizar inscrição"
+            binding.btnCancel.isVisible = false
+        }.addOnFailureListener { e ->
+            Toast.makeText(requireContext(), "Erro ao cancelar inscrição: ${e.message}", Toast.LENGTH_SHORT).show()
+        }
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

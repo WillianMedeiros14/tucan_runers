@@ -62,10 +62,28 @@
             android:name="eventTitle"
             app:argType="string"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_eventsDetailsFragment_to_registrationEventFragment"
+            app:destination="@id/registrationEventFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileEditFragment2"
         android:name="com.example.runners.ui.profile.ProfileEditFragment"
         android:label="fragment_profile_edit"
         tools:layout="@layout/fragment_profile_edit" />
+    <fragment
+        android:id="@+id/registrationEventFragment"
+        android:name="com.example.runners.ui.events.RegistrationEventFragment"
+        android:label="Incrição"
+        tools:layout="@layout/fragment_registration_event">
+        <argument
+            android:name="idEvent"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_registrationEventFragment_to_homeScreenFragmentMain"
+            app:destination="@id/homeScreenFragmentMain"
+            app:popUpTo="@id/registrationEventFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

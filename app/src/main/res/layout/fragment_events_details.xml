@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,102 +7,145 @@
     android:background="@color/white"
     tools:context=".ui.events.EventsDetailsFragment">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingTop="?attr/actionBarSize"
+        android:layout_above="@+id/buttonContainerCancel"
         android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        >
+        android:paddingRight="20dp">
 
-        <ImageView
-            android:id="@+id/image"
-            android:layout_width="wrap_content"
-            android:layout_height="173dp"
-            android:background="@drawable/background_news_items_image"
-            android:clipToOutline="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/dias_paris" />
-
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:layout_marginTop="16dp"
-            android:text="Sobre"
-            android:textSize="16sp"
+            android:orientation="vertical"
+            android:paddingTop="?attr/actionBarSize">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="173dp"
+                android:background="@drawable/background_news_items_image"
+                android:clipToOutline="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/dias_paris" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="4dp"
+                android:text="Sobre"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/about"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="2dp"
+                android:text="App Bemol;\nA consultoria e organização do evento é da empresa Endurance Sports."
+                android:textSize="14sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="4dp"
+                android:text="Incrições"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/registrations"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sobre"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="4dp"
+                android:text="Percuso"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/routeImage"
+                android:layout_width="match_parent"
+                android:layout_height="173dp"
+                android:background="@drawable/background_news_items_image"
+                android:clipToOutline="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/dias_paris" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="40dp"
+                android:indeterminateTint="@color/flush_orange_400" />
+
+            <TextView
+                android:id="@+id/loadingMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Carregando..."
+                android:textColor="@color/bg_bottom_navigation"
+                android:textSize="16sp"
+                android:visibility="gone" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+    <FrameLayout
+        android:id="@+id/buttonContainerCancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="16dp">
+
+        <Button
+            android:id="@+id/btnRegistration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/bg_button"
+            android:gravity="center"
+            android:text="Realizar incrição"
+            android:textAllCaps="false"
+            android:textColor="@color/shark_950"
             android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/image" />
+            app:backgroundTint="@null" />
 
-        <TextView
-            android:id="@+id/about"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="App Bemol;\nA consultoria e organização do evento é da empresa Endurance Sports."
-            android:lineSpacingExtra="2dp"
-            android:textSize="14sp"
-            android:textStyle="normal" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:layout_marginTop="16dp"
-            android:text="Incrições"
-            android:textSize="16sp"
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_button_cancel"
+            android:gravity="center"
+            android:text="Cancelar incrição"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
             android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/image" />
+            app:backgroundTint="@null" />
 
-        <TextView
-            android:id="@+id/registrations"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sobre"
-            android:textSize="14sp"
-            android:textStyle="normal" />
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:layout_marginTop="16dp"
-            android:text="Percuso"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/image" />
-
-
-        <ImageView
-            android:id="@+id/routeImage"
-            android:layout_width="wrap_content"
-            android:layout_height="173dp"
-            android:background="@drawable/background_news_items_image"
-            android:clipToOutline="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/dias_paris" />
 
         <ProgressBar
-            android:id="@+id/progressBar"
+            android:id="@+id/progressBarCancel"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:layout_gravity="center"
-            android:layout_marginBottom="40dp"
-            android:indeterminateTint="@color/flush_orange_400" />
-
-        <TextView
-            android:id="@+id/loadingMessage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Carregando..."
-            android:textColor="@color/bg_bottom_navigation"
-            android:textSize="16sp"
-            android:visibility="gone" />
-
-    </LinearLayout>
+            android:indeterminateTint="@color/flush_orange_400"
+            android:visibility="visible" />
+    </FrameLayout>
 
 
-
-</ScrollView>
+</RelativeLayout>
