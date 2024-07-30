@@ -114,9 +114,6 @@ class NewsFragment : Fragment() {
         })
     }
 
-    private fun backButton() {
-        findNavController().popBackStack()
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()

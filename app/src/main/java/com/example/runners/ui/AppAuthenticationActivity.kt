@@ -45,6 +45,8 @@ class AppAuthenticationActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.newsDetailsScreenFragment -> navView.visibility = View.GONE
+                R.id.homeEventsFragment -> navView.visibility = View.GONE
+                R.id.eventsDetailsFragment -> navView.visibility = View.GONE
                 else -> navView.visibility = View.VISIBLE
             }
         }

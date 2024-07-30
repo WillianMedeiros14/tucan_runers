@@ -10,6 +10,8 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
+import com.example.runners.R
+import androidx.navigation.fragment.findNavController
 
 import com.example.runners.databinding.FragmentHomeScreenBinding
 
@@ -34,6 +36,8 @@ class HomeScreenFragment : Fragment() {
             (activity as AppCompatActivity).supportActionBar?.hide()
         }, 50)
 
+
+        initClicks()
         initSlider()
     }
 
@@ -41,11 +45,9 @@ class HomeScreenFragment : Fragment() {
     private fun initSlider() {
         val imageList = ArrayList<SlideModel>()
 
-
         imageList.add(
             SlideModel(
                 "https://static.todamateria.com.br/upload/pr/ov/provasdeatletismonasolimpiadasrio201629032391801-cke.jpg?auto_optimize=low",
-
                 "Atletismo pelo mundo", ScaleTypes.FIT
             )
         )
@@ -69,9 +71,14 @@ class HomeScreenFragment : Fragment() {
         imageSlider.setImageList(imageList)
     }
 
+    private fun initClicks() {
+        binding.buttonVentRegistration.setOnClickListener {
+            findNavController().navigate(R.id.action_homeScreenFragmentMain_to_homeEventsFragment)
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
 }
