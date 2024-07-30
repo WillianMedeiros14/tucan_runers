@@ -53,8 +53,8 @@ class NewsFragment : Fragment() {
         loadingMessage = binding.loadingMessage
 
         newsAdapter = NewsAdapter { url ->
-//            val action = NewsFragmentDirections.actionNewsHomeFragmentToNewsDetailsScreenFragment(url)
-//            findNavController().navigate(action)
+            val action = NewsFragmentDirections.actionNewsHomeFragmentToNewsDetailsScreenFragment(url)
+            findNavController().navigate(action)
         }
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = newsAdapter
