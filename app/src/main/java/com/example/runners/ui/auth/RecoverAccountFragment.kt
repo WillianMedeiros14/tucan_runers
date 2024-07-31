@@ -12,8 +12,6 @@ import com.example.runners.ui.adapter.FirebaseHelper
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-
-
 class RecoverAccountFragment : Fragment() {
 
     private lateinit var auth: FirebaseAuth

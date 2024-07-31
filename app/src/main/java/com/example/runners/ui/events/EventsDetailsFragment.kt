@@ -101,7 +101,7 @@ class EventsDetailsFragment : Fragment() {
                 .placeholder(R.drawable.image_default)
                 .into(routeImage)
 
-            // Esconder barra de progresso e mensagem de carregamento
+            
             progressBar.visibility = View.GONE
             loadingMessage.visibility = View.GONE
         }

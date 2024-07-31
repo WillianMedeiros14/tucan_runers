@@ -52,8 +52,6 @@ class RegistrationEventFragment : Fragment() {
         getArgs()
 
         initClicks()
-
-
     }
 
     private fun getArgs() {
@@ -195,13 +193,18 @@ class RegistrationEventFragment : Fragment() {
                 Toast.makeText(requireContext(), "Informe seu nome.", Toast.LENGTH_SHORT).show()
             }
             editDateOfBirth.isEmpty() -> {
-                Toast.makeText(requireContext(), "Informe sua data de nascimento.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    "Informe sua data de nascimento.",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
             gender.isEmpty() -> {
                 Toast.makeText(requireContext(), "Informe seu gênero.", Toast.LENGTH_SHORT).show()
             }
             selectedDistance.isEmpty() -> {
-                Toast.makeText(requireContext(), "Selecione a distância.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Selecione a distância.", Toast.LENGTH_SHORT)
+                    .show()
             }
             else -> {
                 val user = User(
@@ -237,18 +240,23 @@ class RegistrationEventFragment : Fragment() {
     }
 
     private fun registerUserInEvent(eventId: String, registration: Map<String, Any>) {
-        val myRef = FirebaseHelper.getDatabase().child("events").child(eventId).child("registrationEvents").child(FirebaseHelper.getIdUser() ?: "")
+        val myRef =
+            FirebaseHelper.getDatabase().child("events").child(eventId).child("registrationEvents")
+                .child(FirebaseHelper.getIdUser() ?: "")
         myRef.setValue(registration).addOnSuccessListener {
             showLoading(false)
-            Toast.makeText(requireContext(), "Inscrição realizada com sucesso!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Inscrição realizada com sucesso!", Toast.LENGTH_SHORT)
+                .show()
             navigateHome(eventId)
         }.addOnFailureListener { e ->
-            Toast.makeText(requireContext(), "Erro ao realizar inscrição: ${e.message}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                requireContext(),
+                "Erro ao realizar inscrição: ${e.message}",
+                Toast.LENGTH_SHORT
+            ).show()
             showLoading(false)
         }
     }
-
-
 
 
     private fun navigateHome(eventId: String) {

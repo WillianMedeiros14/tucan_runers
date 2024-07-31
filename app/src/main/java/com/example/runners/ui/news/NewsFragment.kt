@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.runners.BuildConfig
 
 import com.example.runners.databinding.FragmentNewsBinding
 import com.example.runners.helper.NewsApiService
@@ -26,6 +27,8 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class NewsFragment : Fragment() {
+
+    var API_KEY_NEWS_DATA: String = BuildConfig.API_KEY_NEWS_DATA;
 
     private var _binding: FragmentNewsBinding? = null
     private val binding get() = _binding!!
@@ -65,11 +68,7 @@ class NewsFragment : Fragment() {
 
         fetchNews()
 
-        initClicks()
-    }
 
-    private fun initClicks() {
-//        binding.backButton.setOnClickListener { backButton() }
     }
 
     private fun fetchNews() {
@@ -77,7 +76,7 @@ class NewsFragment : Fragment() {
         loadingMessage.visibility = View.VISIBLE
 
         val newsApiService = RetrofitInstance.getInstance().create(NewsApiService::class.java)
-        newsApiService.getNews(apiKey = "49bad1ab6aae47ac9e17b91bf7be7222").enqueue(object : Callback<NewsItemResponse> {
+        newsApiService.getNews(apiKey = API_KEY_NEWS_DATA).enqueue(object : Callback<NewsItemResponse> {
             override fun onResponse(call: Call<NewsItemResponse>, response: Response<NewsItemResponse>) {
                 if (response.isSuccessful) {
                     response.body()?.articles?.let { articles ->
@@ -106,14 +105,13 @@ class NewsFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<NewsItemResponse>, t: Throwable) {
-                t.printStackTrace() // Trate erros de rede ou de API aqui
+                t.printStackTrace()
 
                 progressBar.visibility = View.GONE
                 loadingMessage.visibility = View.GONE
             }
         })
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

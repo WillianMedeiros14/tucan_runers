@@ -58,16 +58,9 @@ class SplashFragment : Fragment() {
         if (auth.currentUser == null) {
             findNavController().navigate(R.id.action_splashFragment_to_authentication)
         } else {
-//            findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
-//            val navHostFragment = activity?.supportFragmentManager?.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-//            val navController = navHostFragment.navController
-//            navController.setGraph(R.navigation.mobile_navigation)
+
             getDataUser()
 
-
-//            val intent = Intent(activity, AppAuthenticationActivity::class.java)
-//            startActivity(intent)
-//            activity?.finish()
         }
 
     }

@@ -81,7 +81,7 @@ class HomeEventsFragment : Fragment() {
         binding.recyclerView.setHasFixedSize(true)
 
         eventAdapter = EventsAdapter(requireContext(), eventList) { event, position ->
-//            Toast.makeText(requireContext(), "Evento clicado: ${event.name} na posição $position", Toast.LENGTH_SHORT).show()
+
 
             val action = HomeEventsFragmentDirections.actionHomeEventsFragmentToEventsDetailsFragment(event.id, event.name)
             findNavController().navigate(action)
