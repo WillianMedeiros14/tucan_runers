@@ -9,7 +9,9 @@ Está aplicação foi criada para estudos em programação Adroid Nativo com Kot
 
 ## ⓘ Informações
 
-Está aplicação tem como objetivo visualização de noticias de atletismo e inscrição em eventos de corrida. <br><br>
+- Está aplicação tem como objetivo visualização de notícias de atletismo e inscrição em eventos de corrida.
+- Caso não esteja carregando as notícias, altere a chave.
+- <br><br>
 
 ## 💡 Design
 
@@ -22,13 +24,14 @@ O Design no figma tive ajuda do meu amigo [Thiago Fragata](https://www.linkedin.
 - Resetar senha
 - Visualizar eventos
 - Inscrição em evento
-- Cancelar nscrição em evento
+- Cancelar inscrição em evento
+- Visualizar notícias
 
 <br>
 
 ## ✅ Resultado do projeto
 
-Você pode assistir ao vídeo do resultado do projeto [aqui](https://drive.google.com/file/d/1yvWWQ7eZgZvavNNEPInVo_WtS2O6u_h-/view?usp=sharing).
+Você pode assistir ao vídeo do resultado do projeto [aqui](https://drive.google.com/file/d/1JODju0X7E3bQHDqAfldr-dKFA0x71l3m/view?usp=sharing).
 
 <br>
 
@@ -36,7 +39,7 @@ Você pode assistir ao vídeo do resultado do projeto [aqui](https://drive.googl
 
 - Clone esse projeto e abra ele no Android Studio
 - Crie um projeto Android no Firebase, ative a autenticalção por email e senha e o Realtime Database
-- Baixe o arquivo de cinfiguração do firebase e coloque dentro da pasta app.
+- Baixe o arquivo de configuração do firebase e coloque dentro da pasta app.
 
 <br>
 
@@ -44,4 +47,4 @@ Você pode assistir ao vídeo do resultado do projeto [aqui](https://drive.googl
 
 - **[Android e Kotlin](https://developer.android.com/kotlin?hl=pt-br)**.
 - **[Firebase](https://firebase.google.com/?hl=pt)**.
-- **[API de notícias](https://firebase.google.com/?hl=pt)**.
+- **[News Data Io](https://newsdata.io/)**.
