@@ -10,7 +10,7 @@ Está aplicação foi criada para estudos em programação Adroid Nativo com Kot
 ## ⓘ Informações
 
 - Está aplicação tem como objetivo visualização de notícias de atletismo e inscrição em eventos de corrida.
-- Caso não esteja carregando as notícias, altere a chave.
+- Caso não esteja carregando as notícias, altere a chave em API_KEY_NEWS_DATA que fica dentro de gradle.properties.
   <br><br>
 
 ## 💡 Design
